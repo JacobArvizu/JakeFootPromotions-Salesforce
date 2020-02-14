@@ -1,0 +1,28 @@
+<aura:component controller="PPVSearchResults">
+    <aura:attribute name="showNewBtn" type="Boolean" default="false"/>
+    <aura:attribute name="promotion" type="String" default=""/>
+    <aura:attribute name="promotionOptions" type="List" default="[]"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:registerEvent name="formsubmit" type="c:FormSubmit"/>
+
+    <lightning:layout horizontalAlign="center">
+        <lightning:layoutItem class="slds-var-m-around_x-small">
+            <lightning:select label="Event Promotion" title="Event of Promotion" variant="label-hidden" onchange="{!c.promotionChange}">
+                <option value="">All Types</option>
+                <aura:iteration items="{!v.promotionOptions}" var="item">
+                    <option value="{!item.Id}">{!item.Name}</option>
+                </aura:iteration>
+            </lightning:select>
+        </lightning:layoutItem>
+        <lightning:layoutItem class="slds-m-vertical_x-small slds-m-horizontal_xxx-small">
+            <lightning:button aura:id="searchBtn" variant="Brand" label="Search" title="Search" onclick="{!c.onFormSubmit}" />
+        </lightning:layoutItem>
+        <aura:if isTrue="{!v.showNewBtn}">
+            <lightning:layoutItem class="slds-m-vertical_x-small slds-m-horizontal_xxx-small">
+                <lightning:button aura:id="newBtn" variant="Neutral" label="New" title="New" onclick="{!c.newBtnClick}" />
+            </lightning:layoutItem>
+        </aura:if>
+    </lightning:layout>
+</aura:component>

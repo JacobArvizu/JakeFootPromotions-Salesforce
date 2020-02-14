@@ -1,0 +1,14 @@
+<aura:component>
+  <aura:attribute name="ppv" type="PPV_Event__c"/>
+  <aura:attribute name="selected" type="Boolean" default="false"/>
+
+  <aura:registerEvent name="eventselect" type="c:EventSelect"/>
+  <aura:registerEvent name="eventselected" type="c:EventSelected"/>
+
+  <lightning:button class="{!v.selected ? 'tile selected' : 'tile'}" onclick="{!c.onEventClick}">
+    <div style="{!'background-image: url(\'' + v.boat.Picture__c + '\')'}" class="innertile">
+      <div class="lower-third">
+      </div>
+    </div>
+  </lightning:button>
+</aura:component>	

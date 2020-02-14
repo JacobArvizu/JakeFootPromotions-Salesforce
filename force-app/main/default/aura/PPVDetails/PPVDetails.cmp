@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="ppv" type="PPV_Event__c"/>
+    <aura:attribute name="id" type="Id" />
+
+    <aura:handler event="c:PPVSelected" action="{!c.onPPVSelected}"/>
+
+    <force:recordData
+      aura:id="service"
+      recordId="{!v.id}"
+      fields="Id,Name,Promotion__r.Name"
+      targetFields="{!v.ppv}"
+      recordUpdated="{!c.onRecordUpdated}"
+    />
+
+    <aura:if isTrue="{!!empty(v.ppv)}">
+      <lightning:tabset aura:id="tabs" class="slds-card">
+        <lightning:tab label="Details">
+          <c:PPVDetail boat="{!v.ppv}" />
+        </lightning:tab>
+      </lightning:tabset>
+    </aura:if>
+</aura:component>	

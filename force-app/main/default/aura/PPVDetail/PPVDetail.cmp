@@ -1,0 +1,31 @@
+<aura:component>
+  <aura:attribute name="showFullDetailsBtn" type="Boolean" default="false"/>
+  <aura:attribute name="ppv" type="PPV_Event__c"/>
+
+  <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+  <lightning:card iconName="utility:anchor">
+    <aura:set attribute="actions">
+      <aura:if isTrue="{!v.showFullDetailsBtn}">
+        <lightning:button label="Full Details" onclick="{!c.onFullDetails}" />
+      </aura:if>
+    </aura:set>
+    <lightning:layout>
+      <lightning:layoutItem size="12" mediumDeviceSize="6">
+        <div class="slds-p-horizontal--small">
+          <div class="ppvproperty">
+            <span class="label">Boat Name:</span>
+            <span>{! v.ppv.Name }</span>
+          </div>
+          <div class="ppvproperty">
+            <span class="label">Type:</span>
+            <span>{! v.ppv.Promotion__r.Name }</span>
+          </div>
+        </div>
+      </lightning:layoutItem>
+      <lightning:layoutItem size="12" mediumDeviceSize="6">
+        <div class="imageview" style="{!'background-image: url(\'' + v.boat.Picture__c + '\')'}"></div>
+      </lightning:layoutItem>
+    </lightning:layout>
+  </lightning:card>
+</aura:component>	
